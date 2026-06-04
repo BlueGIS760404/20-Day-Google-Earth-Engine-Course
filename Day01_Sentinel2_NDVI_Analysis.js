@@ -1,11 +1,11 @@
 // ═══════════════════════════════════════════════════════════════
 // 𝗗𝗮𝘆 𝟭: 𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝗼𝗻 𝘁𝗼 𝗚𝗼𝗼𝗴𝗹𝗲 𝗘𝗮𝗿𝘁𝗵 𝗘𝗻𝗴𝗶𝗻𝗲 – 𝗡𝗗𝗩𝗜 𝘄𝗶𝘁𝗵 𝗦𝗲𝗻𝘁𝗶𝗻𝗲𝗹-𝟮
 // 𝗟𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗢𝗯𝗷𝗲𝗰𝘁𝗶𝘃𝗲𝘀
-// • Understand what Google Earth Engine is and how it works
-// • Learn how to load satellite data (ImageCollection)
-// • Filter data by location, time, and quality
-// • Calculate vegetation indices (NDVI)
-// • Visualize results on the map with a custom legend
+//    • Understand what Google Earth Engine is and how it works
+//    • Learn how to load satellite data (ImageCollection)
+//    • Filter data by location, time, and quality
+//    • Calculate vegetation indices (NDVI)
+//    • Visualize results on the map with a custom legend
 // ═══════════════════════════════════════════════════════════════
 
 // ─── 1. DEFINE STUDY AREA AS RECTANGLE ────────────────────────
