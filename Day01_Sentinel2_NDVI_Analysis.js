@@ -64,9 +64,7 @@ Map.addLayer(clippedImage, trueColorVis, 'True Color 2023');
 Map.addLayer(clippedNDVI, ndviVis, 'NDVI 2023');
 Map.addLayer(studyArea, {color: 'red'}, 'Study Area');
 
-// =============================================
-// NDVI LEGEND
-// =============================================
+// ─── 7. CREATE NDVI LEGEND ────────────────────────────────────
 var legend = ui.Panel({
   style: {
     position: 'bottom-left',
