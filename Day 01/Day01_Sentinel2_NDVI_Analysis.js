@@ -118,22 +118,13 @@ var labels = ui.Panel({
 });
 
 var minLabel = ui.Label("-0.2");
-minLabel.style().set({
-  width: "65px",
-  textAlign: "left",
-});
+minLabel.style().set({ width: "65px", textAlign: "left" });
 
 var midLabel = ui.Label("0.3");
-midLabel.style().set({
-  width: "70px",
-  textAlign: "center",
-});
+midLabel.style().set({ width: "70px", textAlign: "center" });
 
 var maxLabel = ui.Label("0.8");
-maxLabel.style().set({
-  width: "65px",
-  textAlign: "right",
-});
+maxLabel.style().set({ width: "65px", textAlign: "right" });
 
 labels.add(minLabel);
 labels.add(midLabel);
