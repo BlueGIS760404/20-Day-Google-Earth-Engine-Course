@@ -12,17 +12,16 @@
 var studyArea = ee.Geometry.Rectangle({
   coords: [
     [-99.3, 19.25],
-    [-98.95, 19.6],
+    [-98.95, 19.6]
   ], // [West, South], [East, North] — Mexico City area
-  geodesic: false,
+  geodesic: false
 });
 
 // Get center for map centering (with error margin)
 var centerPoint = studyArea.centroid(1);
 
 // ─── 2. LOAD AND FILTER SENTINEL-2 COLLECTION ─────────────────
-var s2 = ee
-  .ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
   .filterBounds(studyArea)
   .filterDate("2023-01-01", "2023-12-31")
   .filterMetadata("CLOUDY_PIXEL_PERCENTAGE", "less_than", 10);
@@ -36,15 +35,12 @@ var ndvi = image.normalizedDifference(["B8", "B4"]).rename("NDVI");
 // ─── 5. PRINT INFORMATION ─────────────────────────────────────
 print("Number of scenes used:", s2.size());
 
-print(
-  "Mean NDVI (study area):",
-  ndvi.reduceRegion({
-    reducer: ee.Reducer.mean(),
-    geometry: studyArea,
-    scale: 10,
-    maxPixels: 1e9,
-  }),
-);
+print("Mean NDVI (study area):", ndvi.reduceRegion({
+  reducer: ee.Reducer.mean(),
+  geometry: studyArea,
+  scale: 10,
+  maxPixels: 1e9
+}));
 
 // ─── 6. VISUALIZE ON MAP ──────────────────────────────────────
 Map.centerObject(centerPoint, 11);
@@ -52,13 +48,13 @@ Map.centerObject(centerPoint, 11);
 var trueColorVis = {
   bands: ["B4", "B3", "B2"],
   min: 0,
-  max: 3000,
+  max: 3000
 };
 
 var ndviVis = {
   min: -0.2,
   max: 0.8,
-  palette: ["#7f1d1d", "#b45309", "#fef08a", "#4ade80", "#166534"],
+  palette: ["#7f1d1d", "#b45309", "#fef08a", "#4ade80", "#166534"]
 };
 
 // Clip images to study area only
@@ -67,15 +63,15 @@ var clippedNDVI = ndvi.clip(studyArea);
 
 Map.addLayer(clippedImage, trueColorVis, "True Color 2023");
 Map.addLayer(clippedNDVI, ndviVis, "NDVI 2023");
-Map.addLayer(studyArea, { color: "red" }, "Study Area");
+Map.addLayer(studyArea, {color: "red"}, "Study Area");
 
 // ─── 7. CREATE NDVI LEGEND ────────────────────────────────────
 var legend = ui.Panel({
   style: {
     position: "bottom-left",
     padding: "8px 15px",
-    backgroundColor: "rgba(255,255,255,0.85)",
-  },
+    backgroundColor: "rgba(255,255,255,0.85)"
+  }
 });
 
 var legendTitle = ui.Label({
@@ -83,8 +79,8 @@ var legendTitle = ui.Label({
   style: {
     fontWeight: "bold",
     fontSize: "14px",
-    margin: "0 0 6px 0",
-  },
+    margin: "0 0 6px 0"
+  }
 });
 
 legend.add(legendTitle);
@@ -99,12 +95,12 @@ var colorBar = ui.Thumbnail({
     dimensions: "200x20",
     min: 0,
     max: 100,
-    palette: ["#7f1d1d", "#b45309", "#fef08a", "#4ade80", "#166534"],
+    palette: ["#7f1d1d", "#b45309", "#fef08a", "#4ade80", "#166534"]
   },
   style: {
     stretch: "horizontal",
-    margin: "0px 8px",
-  },
+    margin: "0px 8px"
+  }
 });
 
 legend.add(colorBar);
@@ -113,8 +109,8 @@ legend.add(colorBar);
 var labels = ui.Panel({
   layout: ui.Panel.Layout.flow("horizontal"),
   style: {
-    stretch: "horizontal",
-  },
+    stretch: "horizontal"
+  }
 });
 
 var minLabel = ui.Label("-0.2");
